@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fvneto.vetclinic.enums.StatusEnum;
 import com.fvneto.vetclinic.model.Consulta;
 import com.fvneto.vetclinic.repository.ConsultaRepository;
 import com.fvneto.vetclinic.service.ConsultaService;
@@ -65,4 +66,12 @@ public class ConsultaResource {
 		Consulta ConsultaSalvo = consultaService.atualizar(codigo, consulta);
 		return ResponseEntity.ok(ConsultaSalvo);
 	}
+	
+	@PutMapping("/{codigo}/status")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void atualizarStatusConsulta(@PathVariable Long codigo, 
+			@RequestBody StatusEnum status) {
+		consultaService. atualizarStatusConsulta(codigo, status);
+	}
+
 }

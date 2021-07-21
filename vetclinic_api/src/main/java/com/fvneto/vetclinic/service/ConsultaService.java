@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.fvneto.vetclinic.enums.StatusEnum;
 import com.fvneto.vetclinic.model.Consulta;
 import com.fvneto.vetclinic.repository.ConsultaRepository;
 
@@ -22,7 +23,13 @@ public class ConsultaService {
 		BeanUtils.copyProperties(consulta, consultaSalvo, "codigo");
 
 		return this.consultaRepository.save(consultaSalvo);
-
 	}
+	
+	public void atualizarStatusConsulta (Long codigo, StatusEnum status) {
+		Consulta consultaSalva = this.consultaRepository.findById(codigo)
+	      .orElseThrow(() -> new EmptyResultDataAccessException(1));
 
+		consultaSalva.setStatus(status);
+		consultaRepository.save(consultaSalva);
+	}
 }

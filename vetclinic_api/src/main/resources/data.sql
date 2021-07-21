@@ -14,9 +14,9 @@ insert into tb_veterinario ( id, email, nome, telefone ) values ( 1, 'rafael@meu
 insert into tb_veterinario ( id, email, nome, telefone ) values ( 2, 'josy@meuamigopet.com.br', 'Dr Josy',  '(00) 55345-5555' );
 insert into tb_veterinario ( id, email, nome, telefone ) values ( 3, 'alana@meuamigopet.com.br','Dr Alanna',  '(00) 55345-5555' );
 
-insert into tb_consulta ( id_consulta, data_consulta, status, animal_id, veterinario_id ) values ( 1, '2021-01-05', 'ATENDIDO', 1, 1 ); 
-insert into tb_consulta ( id_consulta, data_consulta, status, animal_id, veterinario_id ) values ( 2, '2021-01-05', 'CANCELADO', 2, 1 );
-insert into tb_consulta ( id_consulta, data_consulta, status, animal_id, veterinario_id ) values ( 3, '2021-01-05', 'ATENDIDO', 3, 1 ); 
+insert into tb_consulta ( id_consulta, data_consulta, status, animal_id, veterinario_id ) values ( 1, '2021-01-05', 'REALIZADA', 1, 1 ); 
+insert into tb_consulta ( id_consulta, data_consulta, status, animal_id, veterinario_id ) values ( 2, '2021-01-05', 'CANCELADA', 2, 1 );
+insert into tb_consulta ( id_consulta, data_consulta, status, animal_id, veterinario_id ) values ( 3, '2021-01-05', 'REALIZADA', 3, 1 ); 
 
 
 
