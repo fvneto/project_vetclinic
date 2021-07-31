@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,6 +39,7 @@ public class AnimalResource {
 	@Autowired
 	private AnimalService animalService;
 
+	@ResponseBody
 	@GetMapping
 	@ApiOperation(value = "Retorna uma lista de animais")
 	public List<Animal> listar() {
@@ -47,20 +49,22 @@ public class AnimalResource {
 
 	@PostMapping
 	@ApiOperation(value = "Adicionar um novo pet")
-	public ResponseEntity<Animal> criar(@Valid @RequestBody Animal animal, HttpServletResponse response) {
+	public ResponseEntity<Animal> criar(@Valid @RequestBody Animal animal, 
+			HttpServletResponse response) {
 
 		Animal animalSalvo = animalRepository.save(animal);
-//		publisher.publishEvent(new RecursoCriadoEvent(this, response, 
-//				animalSalva.getCodigo()));
-		return ResponseEntity.status(HttpStatus.CREATED).body(animalSalvo);
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(animalSalvo);
 	}
 
 	@GetMapping("/{id}")
 	@ApiOperation(value = "Consultar um animal pelo codigo")
 	public ResponseEntity<Animal> buscarPeloCodigo(@PathVariable Long id) {
 
-		return this.animalRepository.findById(id).map(funcionario -> ResponseEntity.ok(funcionario))
-				.orElse(ResponseEntity.notFound().build());
+		return this.animalRepository.findById(id)
+				.map(animal -> ResponseEntity.ok(animal))
+				.orElse(ResponseEntity.notFound()
+				.build());
 	}
 
 	@DeleteMapping("/{codigo}")
@@ -73,7 +77,8 @@ public class AnimalResource {
 
 	@PutMapping("/{codigo}")
 	@ApiOperation(value = "Atualizar um animal")
-	public ResponseEntity<Animal> atualizar(@PathVariable Long codigo, @Valid @RequestBody Animal animal) {
+	public ResponseEntity<Animal> atualizar(@PathVariable Long codigo,
+			@Valid @RequestBody Animal animal) {
 		Animal AnimalSalvo = animalService.atualizar(codigo, animal);
 		return ResponseEntity.ok(AnimalSalvo);
 	}

@@ -40,17 +40,20 @@ public class ConsultaResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<Consulta> criar(@Valid @RequestBody Consulta consulta, HttpServletResponse response) {
+	public ResponseEntity<Consulta> criar(
+			@Valid @RequestBody Consulta consulta, HttpServletResponse response) {
 
 		Consulta consultaSalva = consultaRepository.save(consulta);
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(consultaSalva);
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(consultaSalva);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Consulta> buscarPeloCodigo(@PathVariable Long id) {
 
-		return this.consultaRepository.findById(id).map(funcionario -> ResponseEntity.ok(funcionario))
+		return this.consultaRepository.findById(id)
+				.map(consulta -> ResponseEntity.ok(consulta))
 				.orElse(ResponseEntity.notFound().build());
 	}
 
@@ -62,7 +65,9 @@ public class ConsultaResource {
 	}
 
 	@PutMapping("/{codigo}")
-	public ResponseEntity<Consulta> atualizar(@PathVariable Long codigo, @Valid @RequestBody Consulta consulta) {
+	public ResponseEntity<Consulta> atualizar(@PathVariable Long codigo, 
+			@Valid @RequestBody Consulta consulta) {
+		
 		Consulta ConsultaSalvo = consultaService.atualizar(codigo, consulta);
 		return ResponseEntity.ok(ConsultaSalvo);
 	}

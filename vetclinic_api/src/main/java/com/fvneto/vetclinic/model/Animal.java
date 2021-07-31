@@ -51,6 +51,22 @@ public class Animal implements Serializable {
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "animal", cascade = CascadeType.REMOVE)
 	private List<Consulta> consultas;
+	
+	public Animal() {
+		super();
+	}
+
+	public Animal(Long id, String nome, EspecieEnum especie, @Size(min = 3, max = 40) String raca,
+			LocalDate datanascimento, List<Tutor> tutores, List<Consulta> consultas) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.especie = especie;
+		this.raca = raca;
+		this.datanascimento = datanascimento;
+		this.tutores = tutores;
+		this.consultas = consultas;
+	}
 
 	public Long getId() {
 		return id;

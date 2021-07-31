@@ -39,19 +39,23 @@ public class VeterinarioResource {
 		}
 		
 		@PostMapping
-		public ResponseEntity<Veterinario> criar(@Valid @RequestBody Veterinario veterinario, 
+		public ResponseEntity<Veterinario> criar(
+				@Valid @RequestBody Veterinario veterinario, 
 				HttpServletResponse response) {
 			
-			Veterinario veterinarioSalvo = veterinarioRepository.save(veterinario);
+			Veterinario veterinarioSalvo = veterinarioRepository
+					.save(veterinario);
 
-			return ResponseEntity.status(HttpStatus.CREATED).body(veterinarioSalvo);
+			return ResponseEntity.status(HttpStatus.CREATED)
+					.body(veterinarioSalvo);
 		}
 
 		@GetMapping("/{id}")
-		public ResponseEntity<Veterinario> buscarPeloCodigo(@PathVariable Long id) {
+		public ResponseEntity<Veterinario> buscarPeloCodigo(
+				@PathVariable Long id) {
 			
 		  return this.veterinarioRepository.findById(id)
-		      .map(funcionario -> ResponseEntity.ok(funcionario))
+		      .map(veterinario -> ResponseEntity.ok(veterinario))
 		      .orElse(ResponseEntity.notFound().build());	
 		}
 		
@@ -63,9 +67,11 @@ public class VeterinarioResource {
 		}
 		
 		@PutMapping("/{codigo}")
-		public ResponseEntity<Veterinario> atualizar(@PathVariable Long codigo, 
+		public ResponseEntity<Veterinario> atualizar(
+				@PathVariable Long codigo, 
 				@Valid @RequestBody Veterinario veterinario) {
-			Veterinario veterinarioSalvo = veterinarioService.atualizar(codigo, veterinario);
+			Veterinario veterinarioSalvo = veterinarioService
+					.atualizar(codigo, veterinario);
 			return ResponseEntity.ok(veterinarioSalvo);
 		}
 }

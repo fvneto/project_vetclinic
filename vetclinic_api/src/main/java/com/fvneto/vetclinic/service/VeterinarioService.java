@@ -1,5 +1,7 @@
 package com.fvneto.vetclinic.service;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -14,7 +16,7 @@ public class VeterinarioService {
 	@Autowired
 	private VeterinarioRepository veterinarioRepository;
 
-	public Veterinario atualizar(Long codigo, Veterinario veterinario) {
+	public Veterinario atualizar(Long codigo, @Valid Veterinario veterinario) {
 
 		Veterinario veterinarioSalvo = this.veterinarioRepository.findById(codigo)
 				.orElseThrow(() -> new EmptyResultDataAccessException(1));

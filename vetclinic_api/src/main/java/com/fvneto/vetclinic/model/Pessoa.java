@@ -19,8 +19,6 @@ public abstract class Pessoa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull
-	@NotBlank
 	@Size(min = 3, max = 40)
 	private String nome;
 
@@ -29,6 +27,20 @@ public abstract class Pessoa implements Serializable {
 	private String telefone;
 
 	private String email;
+	
+	
+	public Pessoa() {
+		super();
+	}
+
+	public Pessoa(Long id, @Size(min = 3, max = 40) String nome, 
+			@NotNull @NotBlank String telefone, String email) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.telefone = telefone;
+		this.email = email;
+	}
 
 	public Long getId() {
 		return id;
