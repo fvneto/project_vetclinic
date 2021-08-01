@@ -1,4 +1,4 @@
-package com.fvneto.vetclinic.model;
+	package com.fvneto.vetclinic.model;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,10 +22,8 @@ public class Tutor extends Pessoa {
 	@JoinColumn(name = "animal_id")
 	private Animal animal;
 	
-	
 	public Tutor() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Tutor(Long id, @Size(min = 3, max = 40) String nome, 
